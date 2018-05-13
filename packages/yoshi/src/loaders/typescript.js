@@ -12,6 +12,10 @@ module.exports = isAngularProject => ({
         // Sets *transpileOnly* to true and WARNING! stops registering all errors to webpack.
         // Needed for HappyPack or thread-loader.
         happyPackMode: true,
+        // force es2015 for tree shaking capabilities
+        compilerOptions: {
+          module: 'es2015',
+        },
       },
     },
   ],
