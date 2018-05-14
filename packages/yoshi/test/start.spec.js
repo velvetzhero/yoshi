@@ -159,7 +159,7 @@ describe('Aggregator: Start', () => {
             'src/client.js': `import { render } from 'react-dom';
               render(<App />, rootEl);`,
             '.babelrc': `{"presets": ["${require.resolve(
-              'babel-preset-wix',
+              'babel-preset-yoshi',
             )}"]}`,
             'package.json': fx.packageJson(
               {
@@ -186,7 +186,7 @@ describe('Aggregator: Start', () => {
             'src/client.js': `import { render } from 'react-dom';
               render(<App />, rootEl);`,
             '.babelrc': `{"presets": ["${require.resolve(
-              'babel-preset-wix',
+              'babel-preset-yoshi',
             )}"]}`,
             'package.json': fx.packageJson(
               {
