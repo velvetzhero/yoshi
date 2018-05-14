@@ -550,4 +550,47 @@ describe('Loaders', () => {
       }
     });
   });
+
+  describe('Typescript', () => {
+    let test;
+
+    before(() => {
+      test = tp.create();
+      test
+        .setup(
+          {
+            'src/utils.ts': `
+            export function one() {
+              return 'ONE';
+            }
+            export function two() {
+              return 'TWO';
+            }
+            `,
+            'src/app.ts': `
+              import {one} from './utils';
+              console.log(one());
+            `,
+            'package.json': `{
+              "name": "test",
+              "yoshi": {
+                "entry": "./app.ts"
+              }
+            }`,
+            'pom.xml': fx.pom(),
+            'tsconfig.json': fx.tsconfig(),
+          },
+          [],
+        )
+        .execute('build');
+    });
+    after(() => test.teardown());
+
+    it.only('should tree shake unused functions', () => {
+      expect(test.content('dist/statics/app.bundle.min.js')).to.contain(`ONE`);
+      expect(test.content('dist/statics/app.bundle.min.js')).not.to.contain(
+        `TWO`,
+      );
+    });
+  });
 });
