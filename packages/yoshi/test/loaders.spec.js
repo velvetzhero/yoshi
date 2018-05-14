@@ -586,7 +586,7 @@ describe('Loaders', () => {
     });
     after(() => test.teardown());
 
-    it.only('should tree shake unused functions', () => {
+    it('should tree shake unused functions', () => {
       expect(test.content('dist/statics/app.bundle.min.js')).to.contain(`ONE`);
       expect(test.content('dist/statics/app.bundle.min.js')).not.to.contain(
         `TWO`,
